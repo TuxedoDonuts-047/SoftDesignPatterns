@@ -39,5 +39,5 @@ jobs:
         shell: pwsh
         run: |
           dotnet sonarscanner begin /k:"TuxedoDonuts-047_SoftDesignPatterns" /o:"tuxedodonuts-047" /d:sonar.token="$env:SONAR_TOKEN" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build DatabaseConnect.sln --configuration Release
+          dotnet build DatabaseConnect.sln 
           dotnet sonarscanner end /d:sonar.token="$env:SONAR_TOKEN"
