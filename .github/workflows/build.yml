@@ -18,10 +18,9 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
-
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v2
+          dotnet-version: |
+            7.0.x
+            8.0.x
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v4
@@ -40,5 +39,5 @@ jobs:
         shell: pwsh
         run: |
           dotnet sonarscanner begin /k:"TuxedoDonuts-047_SoftDesignPatterns" /o:"tuxedodonuts-047" /d:sonar.token="$env:SONAR_TOKEN" /d:sonar.host.url="https://sonarcloud.io"
-          msbuild DatabaseConnect.sln /t:Rebuild /p:Configuration=Release
+          dotnet build DatabaseConnect.sln --configuration Release
           dotnet sonarscanner end /d:sonar.token="$env:SONAR_TOKEN"
